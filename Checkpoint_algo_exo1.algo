@@ -1,0 +1,80 @@
+ALGORITHM comptage_mots_et_voyelles
+
+VAR
+    // Initialisation des compteurs
+    nombre_mots, nombre_voyelles, index : INTEGER := 0;
+
+BEGIN
+    // Définition des fonctions
+    // Fonction 1 : Fonction de lecture des caractère 
+
+    FUNCTION readCharacter(phrase: STRING, index: INTEGER) : CHAR
+    
+    BEGIN
+        IF (index >= 0 && index < phrase.length) THEN
+            Read(phrase[index])
+        ELSE_IF (phrase[index] = ".") THEN
+            Read(phrase[index])
+            END_IF
+        END_IF
+        RETURN phrase[index] ;
+    END
+
+    FUNCTION isLetter(character: CHAR) : BOOLEAN
+    // Vérifier si le caractère est une lettre
+    VAR
+        letterCheck : BOOLEAN;
+    BEGIN
+        letterCheck := (character >= 'A' and character <= 'Z') or 
+                        (character >= 'a' and character <= 'z')
+        RETURN letterCheck ;
+    END
+    
+    // Vérifier si le caractère est une voyelle
+    FUNCTION isVowel(character : CHAR) : BOOLEAN
+    VAR
+        // Définition de l'ensemble des voyelles
+        letterVowel = {'a','e','i','o','u','A','E','I','O','U'};
+        
+    BEGIN
+        IF (character in letterVowel) THEN
+            Read(character)
+        END_IF
+        RETURN character ;
+    END
+
+    // Main app
+    // Lecture de la phrase caractère par caractère
+
+    currentCharacter := readCharacter(phrase, index);
+    WHILE (currentCharacter <> ".") DO
+        set_instructions
+        // Vérifier s'il  s'agit d'une lettre pour compter les voyelles
+
+        IF (isLetter(currentCharacter)) THEN
+            IF (isVowel(currentCharacter)) THEN
+                nombre_voyelles := nombre_voyelles + 1;
+            END_IF
+            
+        END_IF
+
+        // Vérifier s'il s'agit d'un espace pour compter les mots
+
+        IF (currentCharacter = ' ') THEN
+            nombre_mots := nombre_mots + 1;
+        END_IF
+
+        // Passer au caratère suivant 
+        index := index + 1;
+    END_WHILE
+
+    // Afficher les résultats
+    Read(nombre_mots);
+    write("Nombre de mots dans la phase : "+ nombre_mots);
+    Read(nombre_voyelles);
+    write("Nombre de voyelles dans la phrase : "+ nombre_voyelles);
+
+    
+
+
+END

@@ -1,0 +1,41 @@
+ALGORITHM Somme_elements_distincts
+VAR
+    sum : INTEGER := 0;
+    tab1,tab2 :  ARRAY_OF INTEGER[50];
+    i,j : INTEGER;
+BEGIN
+    // Lire le contenu des deux tableaux
+    write("Lire Tableau 1");
+    Read(tab1);
+    write("Lire Tableau 2");
+    Read(tab2);
+
+    //Comparer chaque élément du premier tableau avec ceux du second tableau
+
+    FOR i FROM 0 TO tab1.length STEP 1  DO
+        FOR j FROM 0 TO tab2.length STEP 1  DO
+            IF (tab1[i] = tab2[j]) THEN
+                break;
+            ELSE_IF (j = tab2.length) THEN
+                sum := sum +tab1[i]
+            
+            END_IF
+        END_FOR
+    END_FOR
+
+    //Comparer chaque élément du second tableau avec ceux du premier tableau
+    FOR j FROM 0 TO tab2.length STEP 1  DO
+        FOR i FROM 0 TO tab1.length STEP 1  DO
+            IF (tab2[j] = tab1[i]) THEN
+                break;
+            ELSE_IF (i = tab1.length) THEN
+                sum := sum +tab1[j]
+            
+            END_IF
+        END_FOR
+    END_FOR
+
+    //La somme des élément distincts des deux tableaux
+
+    write("La somme des éléments distincts des deux tableau est : " + sum);
+END
